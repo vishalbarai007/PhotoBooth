@@ -2,7 +2,7 @@
 
 import { Suspense } from 'react'
 import { Sour_Gummy } from 'next/font/google'
-import ARFaceFilter from '@/components/ar-face-filter'
+// import ARFaceFilter from '@/components/ar-face-filter'
 
 const sourGummy = Sour_Gummy({
   subsets: ['latin'],
@@ -17,7 +17,7 @@ export default function CameraPage() {
           <div className="text-white text-xl">Loading AR Camera...</div>
         </div>
       }>
-        <ARFaceFilter />
+        {/* <ARFaceFilter /> */}
       </Suspense>
     </div>
   )
