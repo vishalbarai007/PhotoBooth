@@ -85,7 +85,7 @@ export default function LandingPage() {
             Contact
           </Link>
         </div>
-        <p>&copy; 2024 PhotoBooth. Capture your moments.</p>
+        <p>&copy; 2025 PhotoBooth. Capture your moments.</p>
         <p>&copy; Made with ❤️ by Vishal & Shravani.</p>
 
       </footer>
