@@ -87,6 +87,8 @@ export default function LandingPage() {
         </div>
         <p>&copy; 2025 PhotoBooth. Capture your moments.</p>
         <p>&copy; Made with ❤️ by Vishal & Shravani.</p>
+        <p>&copy; Made with ❤️ by Vishal & Shravani.</p>
+
 
       </footer>
     </div>
