@@ -44,9 +44,17 @@ export default function LandingPage() {
             <div className="text-center max-w-4xl">
               <Hero />
               <LandingFeatures />
-              <Link href="/setup">
-                <Startbutton />
-              </Link>
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
+                <Link href="/setup">
+                  <Startbutton />
+                </Link>
+                <Link href="/room">
+                  <button className="bg-purple-600 text-white hover:bg-purple-700 text-xl px-12 py-6 rounded-full font-bold shadow-2xl transform hover:scale-105 transition-all duration-200 flex items-center justify-center">
+                    <span className="mr-3">🌐</span>
+                    Long Distance Booth
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -86,7 +94,6 @@ export default function LandingPage() {
           </Link>
         </div>
         <p>&copy; 2025 PhotoBooth. Capture your moments.</p>
-        <p>&copy; Made with ❤️ by Vishal & Shravani.</p>
         <p>&copy; Made with ❤️ by Vishal & Shravani.</p>
 
 
