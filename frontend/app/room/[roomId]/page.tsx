@@ -182,6 +182,11 @@ export default function RoomPage() {
       router.push("/room")
     })
 
+    socketClient.on("connect_error", (err) => {
+      console.error("Connection error:", err)
+      setErrorMsg(`Failed to connect to the backend socket server. Please make sure the backend is running at: ${socketUrl}`)
+    })
+
     // Setup local camera on mount
     requestCameraAccess()
 
