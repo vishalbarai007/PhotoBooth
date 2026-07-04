@@ -7,7 +7,7 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:3000", // For local development
-  "https://photo-booth-ten-green.vercel.app/" // REPLACE THIS with your actual Vercel URL
+  "https://photo-booth-ten-green.vercel.app" // REPLACE THIS with your actual Vercel URL
 ];
 
 app.use(cors({

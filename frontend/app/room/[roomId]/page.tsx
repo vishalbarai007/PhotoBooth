@@ -59,7 +59,7 @@ export default function RoomPage() {
   const params = useParams()
   const router = useRouter()
   const searchParams = useSearchParams()
-  
+
   const rawRoomId = params?.roomId as string
   const isCreateFlow = rawRoomId === "create"
   const username = searchParams.get("username") || "User"
@@ -99,8 +99,8 @@ export default function RoomPage() {
   const socketRef = useRef<Socket | null>(null)
   const roomStateRef = useRef<any>(null)
   const selectedPropRef = useRef<Prop | null>(null)
-  const performCaptureRef = useRef<(slotIndex: number) => void>(() => {})
-  const triggerSyncCountdownRef = useRef<() => void>(() => {})
+  const performCaptureRef = useRef<(slotIndex: number) => void>(() => { })
+  const triggerSyncCountdownRef = useRef<() => void>(() => { })
 
   // Synchronize state and functions to refs on every render
   const isSequenceActiveRef = useRef(false)
@@ -126,11 +126,18 @@ export default function RoomPage() {
     triggerSyncCountdownRef.current = triggerSyncCountdown
   })
 
-  const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || "https://photobooth-q6li.onrender.com" || "http://localhost:5000"
+  const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:5000"
 
   // Initialize socket connection
   useEffect(() => {
-    const socketClient = io(socketUrl)
+    // const socketClient = io(socketUrl, {
+    //   transports: ["websocket"] // This is essential for Vercel/Render compatibility
+    // })
+
+    const socketClient = io(process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000", {
+      transports: ["websocket"],
+    });
+    
     setSocket(socketClient)
 
     socketClient.on("connect", () => {
@@ -364,10 +371,10 @@ export default function RoomPage() {
     if (activeSocket && activeRoomCode) {
       setIsSequenceActive(true)
       setSequenceStatus("Starting 3-photo capture sequence...")
-      
+
       // Reset the room photos so the sequence starts clean from slot 0
       activeSocket.emit("reset_room", { roomId: activeRoomCode })
-      
+
       setTimeout(() => {
         setSequenceStatus("")
         activeSocket.emit("start_sync_countdown", { roomId: activeRoomCode })
@@ -538,7 +545,7 @@ export default function RoomPage() {
     const padding = 30
     const spacing = 15
     const captionHeight = captionText ? 80 : 40
-    
+
     const availableWidth = baseWidth - padding * 2
     const availableHeight = baseHeight - padding * 2 - captionHeight
 
@@ -682,7 +689,7 @@ export default function RoomPage() {
             <ArrowLeft className="w-5 h-5" />
             <span className="font-medium">Exit Room</span>
           </Link>
-          
+
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             🌐 Long Distance Room: <span className="font-mono text-purple-600 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">{currentRoomCode || "..."}</span>
           </h1>
@@ -705,7 +712,7 @@ export default function RoomPage() {
         <div className="flex items-center gap-2">
           <span className={cn("w-2.5 h-2.5 rounded-full inline-block", isPartnerConnected ? "bg-green-500 animate-pulse" : "bg-orange-500 animate-ping")} />
           <span>
-            {isPartnerConnected 
+            {isPartnerConnected
               ? `Connected with ${partnerUser?.username || "Friend"} 🟢`
               : "Waiting for partner to join... Share your Room Code!"
             }
@@ -719,10 +726,10 @@ export default function RoomPage() {
       </div>
 
       <main className="flex-1 max-w-7xl mx-auto w-full px-6 py-6 grid lg:grid-cols-12 gap-8 items-start">
-        
+
         {/* LEFT COLUMN: Camera feed & Capture controls (Lg: col-span-7) */}
         <section className="lg:col-span-7 flex flex-col gap-6 w-full">
-          
+
           {/* Camera Card */}
           <Card className="shadow-lg overflow-hidden border-2 border-white/80 bg-white/90 backdrop-blur">
             <CardContent className="p-4">
@@ -750,10 +757,10 @@ export default function RoomPage() {
                       muted
                       className="w-full h-full object-cover transform -scale-x-100"
                     />
-                    
+
                     {/* Mirroring grid lines overlay */}
                     <div className="absolute inset-0 pointer-events-none border-2 border-white/20 rounded-xl" />
-                    
+
                     {/* Countdown Overlay */}
                     {isCountingDown && countdown > 0 && (
                       <div className="absolute inset-0 bg-black/60 flex items-center justify-center z-20">
@@ -923,7 +930,7 @@ export default function RoomPage() {
 
         {/* RIGHT COLUMN: Shared 2x3 Photocard Display (Lg: col-span-5) */}
         <section className="lg:col-span-5 flex flex-col gap-6 items-center w-full">
-          
+
           {/* Header titles */}
           <div className="text-center w-full mb-1">
             <h2 className="text-2xl font-bold text-gray-900">Shared Photocard</h2>
@@ -951,13 +958,13 @@ export default function RoomPage() {
                 >
                   {/* The 2-column by 3-row photo grid */}
                   <div className="grid grid-cols-2 gap-2.5 h-full items-stretch">
-                    
+
                     {/* COLUMN 1: Creator / Host (User 1) */}
                     <div className="flex flex-col gap-2.5 justify-around h-full">
                       <div className="text-center text-[10px] text-gray-500 font-bold tracking-wider leading-none py-1 border-b border-dashed border-gray-300">
                         {roomState?.users?.find((u: any) => u.role === "creator")?.username || "Host"}
                       </div>
-                      
+
                       {[0, 1, 2].map((idx) => (
                         <div
                           key={`host-${idx}`}
