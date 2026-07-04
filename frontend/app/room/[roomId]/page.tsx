@@ -126,7 +126,7 @@ export default function RoomPage() {
     triggerSyncCountdownRef.current = triggerSyncCountdown
   })
 
-  const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || "http://localhost:5000"
+  const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || "https://photobooth-q6li.onrender.com" || "http://localhost:5000"
 
   // Initialize socket connection
   useEffect(() => {
