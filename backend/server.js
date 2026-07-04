@@ -4,16 +4,19 @@ import { Server } from 'socket.io';
 import cors from 'cors';
 
 const app = express();
-app.use(cors());
+
+const allowedOrigins = [
+  "http://localhost:3000", // For local development
+  "https://photo-booth-ten-green.vercel.app/" // REPLACE THIS with your actual Vercel URL
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 
 const httpServer = createServer(app);
-const io = new Server(httpServer, {
-  cors: {
-    origin: '*', // Allow all origins for local/development testing
-    methods: ['GET', 'POST'],
-  },
-});
-
 // In-memory room storage
 const rooms = new Map();
 
@@ -30,6 +33,14 @@ function generateRoomCode() {
   }
   return code;
 }
+
+const io = new Server(httpServer, {
+  cors: {
+    origin: allowedOrigins,
+    methods: ['GET', 'POST'],
+    credentials: true
+  },
+});
 
 io.on('connection', (socket) => {
   console.log(`User connected: ${socket.id}`);
