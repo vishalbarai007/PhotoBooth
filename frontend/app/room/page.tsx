@@ -58,34 +58,34 @@ export default function RoomEntryPage() {
     <div className={`${sourGummy.className} min-h-screen bg-[#ffc5a6] flex flex-col`}>
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 text-pink-600">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <Link href="/" className="flex items-center gap-2 text-pink-600 self-start sm:self-auto">
             <ArrowLeft className="w-5 h-5" />
             <span className="font-medium">Back to Home</span>
           </Link>
-          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Globe className="w-6 h-6 text-purple-600 animate-spin-slow" />
             Long Distance Room
           </h1>
-          <div className="w-24" /> {/* Spacer */}
+          <div className="hidden sm:block w-24" /> {/* Spacer */}
         </div>
       </header>
 
-      <main className="flex-1 flex items-center justify-center p-6">
-        <div className="w-full max-w-4xl grid md:grid-cols-2 gap-8">
+      <main className="flex-1 flex items-center justify-center p-4 sm:p-6 animate-fade-in">
+        <div className="w-full max-w-4xl grid md:grid-cols-2 gap-6 sm:gap-8">
           
           {/* Create Room Card */}
           <Card className="border-2 border-purple-200 shadow-xl hover:shadow-2xl transition-all duration-300 bg-white/95 backdrop-blur-sm">
-            <CardContent className="p-8 flex flex-col justify-between h-full">
+            <CardContent className="p-6 sm:p-8 flex flex-col justify-between h-full">
               <div>
-                <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
-                  <Plus className="w-8 h-8 text-purple-600" />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+                  <Plus className="w-6 h-6 sm:w-8 sm:h-8 text-purple-600" />
                 </div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">Create a Room</h2>
-                <p className="text-gray-600 mb-6">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Create a Room</h2>
+                <p className="text-gray-600 mb-6 text-sm sm:text-base">
                   Generate a unique secure room code. Share the code with your partner so they can join you in a shared capture session.
                 </p>
-
+ 
                 <div className="space-y-2 mb-6">
                   <Label htmlFor="create-username" className="text-gray-700 text-sm font-semibold">Your Nickname</Label>
                   <Input
@@ -98,26 +98,26 @@ export default function RoomEntryPage() {
                   />
                 </div>
               </div>
-
+ 
               <Button
                 onClick={handleCreateRoom}
                 disabled={isLoading}
-                className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-6 rounded-xl text-lg mt-4 shadow-lg transition-transform hover:scale-[1.02]"
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-5 sm:py-6 rounded-xl text-base sm:text-lg mt-4 shadow-lg transition-transform hover:scale-[1.02]"
               >
                 Create Room & Generate Code
               </Button>
             </CardContent>
           </Card>
-
+ 
           {/* Join Room Card */}
           <Card className="border-2 border-pink-200 shadow-xl hover:shadow-2xl transition-all duration-300 bg-white/95 backdrop-blur-sm">
-            <CardContent className="p-8 flex flex-col justify-between h-full">
+            <CardContent className="p-6 sm:p-8 flex flex-col justify-between h-full">
               <div>
-                <div className="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center mb-6">
-                  <Users className="w-8 h-8 text-pink-600" />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-pink-100 rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+                  <Users className="w-6 h-6 sm:w-8 sm:h-8 text-pink-600" />
                 </div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">Join a Room</h2>
-                <p className="text-gray-600 mb-6">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Join a Room</h2>
+                <p className="text-gray-600 mb-6 text-sm sm:text-base">
                   Enter the room code shared by your partner to connect and snap photos together in a single custom card.
                 </p>
 
@@ -157,7 +157,7 @@ export default function RoomEntryPage() {
               <Button
                 onClick={handleJoinRoom}
                 disabled={isLoading}
-                className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-6 rounded-xl text-lg shadow-lg transition-transform hover:scale-[1.02]"
+                className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-5 sm:py-6 rounded-xl text-base sm:text-lg shadow-lg transition-transform hover:scale-[1.02]"
               >
                 Join Friend's Room
               </Button>

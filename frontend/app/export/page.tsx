@@ -478,20 +478,20 @@ export default function ExportPage() {
     <div className="min-h-screen bg-gradient-to-br from-pink-50 to-rose-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <Link
             href={`/styles?layout=${layoutId}&props=${propsParam}&session=${sessionId}`}
-            className="flex items-center gap-2 text-pink-600"
+            className="flex items-center gap-2 text-pink-600 self-start sm:self-auto"
           >
             <ArrowLeft className="w-5 h-5" />
             <span className="font-medium">Back to Styles</span>
           </Link>
-          <h1 className="text-2xl font-bold text-gray-900">Export & Download</h1>
-          <div className="w-24" />
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Export & Download</h1>
+          <div className="hidden sm:block w-24" />
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6 py-8">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Progress */}
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-4">

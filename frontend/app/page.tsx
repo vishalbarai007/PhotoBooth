@@ -60,21 +60,21 @@ export default function LandingPage() {
 
           {/* grid2 */}
           {/* Image Stack with Hover Effect */}
-          <div className="flex items-center justify-center relative group h-[500px]">
+          <div className="flex items-center justify-center relative group h-[300px] sm:h-[400px] md:h-[500px] mt-6 lg:mt-0 overflow-hidden w-full max-w-full">
             <img
               src="/Images/Landing1.png"
               alt="Photo Booth"
-              className="w-full max-w-md rounded-lg shadow-lg absolute z-20 transition-transform duration-500 group-hover:scale-110"
+              className="w-[200px] sm:w-[280px] md:w-[350px] rounded-lg shadow-lg absolute z-20 transition-transform duration-500 group-hover:scale-110"
             />
             <img
               src="/Images/Landing2.png"
               alt="Photo Booth"
-              className="w-full max-w-md rounded-lg shadow-lg absolute z-0 rotate-12 transform translate-x-28 translate-y-20 opacity-70 transition-transform duration-500 group-hover:rotate-[18deg]"
+              className="w-[200px] sm:w-[280px] md:w-[350px] rounded-lg shadow-lg absolute z-0 rotate-12 transform translate-x-12 sm:translate-x-24 md:translate-x-28 translate-y-10 sm:translate-y-16 md:translate-y-20 opacity-70 transition-transform duration-500 group-hover:rotate-[18deg]"
             />
             <img
               src="/Images/Landing2.png"
               alt="Photo Booth"
-              className="w-full max-w-md rounded-lg shadow-lg absolute z-0 -rotate-12 transform -translate-x-28 translate-y-20 opacity-70 transition-transform duration-500 group-hover:-rotate-[18deg]"
+              className="w-[200px] sm:w-[280px] md:w-[350px] rounded-lg shadow-lg absolute z-0 -rotate-12 transform -translate-x-12 sm:-translate-x-24 md:-translate-x-28 translate-y-10 sm:translate-y-16 md:translate-y-20 opacity-70 transition-transform duration-500 group-hover:-rotate-[18deg]"
             />
           </div>
         </main>

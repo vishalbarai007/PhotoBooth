@@ -85,17 +85,17 @@ export default function CameraPage() {
     <div className="min-h-screen bg-gradient-to-br from-pink-50 to-rose-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/setup" className="flex items-center gap-2 text-pink-600">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <Link href="/setup" className="flex items-center gap-2 text-pink-600 self-start sm:self-auto">
             <ArrowLeft className="w-5 h-5" />
             <span className="font-medium">Back to Setup</span>
           </Link>
-          <h1 className="text-2xl font-bold text-gray-900">Camera Setup</h1>
-          <div className="w-24" /> {/* Spacer */}
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Camera Setup</h1>
+          <div className="hidden sm:block w-24" /> {/* Spacer */}
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-6 py-8">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Progress */}
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-4">
@@ -224,16 +224,16 @@ export default function CameraPage() {
         )}
 
         {/* Actions */}
-        <div className="flex justify-between items-center">
-          <Link href="/setup">
-            <Button variant="outline" size="lg">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-8">
+          <Link href="/setup" className="w-full sm:w-auto">
+            <Button variant="outline" size="lg" className="w-full">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Setup
             </Button>
           </Link>
-
-          <Link href={canProceed ? `/capture?layout=${layout}` : "#"}>
-            <Button size="lg" disabled={!canProceed} className="bg-pink-500 hover:bg-purple-700">
+ 
+          <Link href={canProceed ? `/capture?layout=${layout}` : "#"} className="w-full sm:w-auto">
+            <Button size="lg" disabled={!canProceed} className="w-full bg-pink-500 hover:bg-purple-700">
               Ready to Capture
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>

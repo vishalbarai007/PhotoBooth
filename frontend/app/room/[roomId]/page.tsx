@@ -684,33 +684,34 @@ export default function RoomPage() {
 
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/room" className="flex items-center gap-2 text-pink-600">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <Link href="/room" className="flex items-center gap-2 text-pink-600 self-start sm:self-auto">
             <ArrowLeft className="w-5 h-5" />
             <span className="font-medium">Exit Room</span>
           </Link>
-
-          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-            🌐 Long Distance Room: <span className="font-mono text-purple-600 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">{currentRoomCode || "..."}</span>
+ 
+          <h1 className="text-lg sm:text-2xl font-bold text-gray-900 flex flex-wrap items-center justify-center gap-2 text-center">
+            <span>🌐 Long Distance Room:</span>
+            <span className="font-mono text-purple-600 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">{currentRoomCode || "..."}</span>
           </h1>
-
-          <div className="flex gap-2">
-            <Button size="sm" variant="outline" onClick={handleCopyCode} className="bg-white flex items-center gap-1">
+ 
+          <div className="flex gap-2 w-full sm:w-auto justify-end sm:justify-start">
+            <Button size="sm" variant="outline" onClick={handleCopyCode} className="bg-white flex-1 sm:flex-initial flex items-center justify-center gap-1">
               {copiedCode ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4 text-gray-500" />}
-              {copiedCode ? "Copied" : "Copy Code"}
+              <span>{copiedCode ? "Copied" : "Copy Code"}</span>
             </Button>
-            <Button size="sm" variant="outline" onClick={handleCopyLink} className="bg-white flex items-center gap-1">
+            <Button size="sm" variant="outline" onClick={handleCopyLink} className="bg-white flex-1 sm:flex-initial flex items-center justify-center gap-1">
               {isCopiedLink ? <Check className="w-4 h-4 text-green-500" /> : <Users className="w-4 h-4 text-gray-500" />}
-              {isCopiedLink ? "Copied Link" : "Invite Partner"}
+              <span>{isCopiedLink ? "Copied Link" : "Invite Partner"}</span>
             </Button>
           </div>
         </div>
       </header>
-
+ 
       {/* Partner join status notification toast bar */}
-      <div className="bg-purple-100 text-purple-800 text-sm font-semibold py-2 px-6 flex justify-between items-center border-b border-purple-200">
-        <div className="flex items-center gap-2">
-          <span className={cn("w-2.5 h-2.5 rounded-full inline-block", isPartnerConnected ? "bg-green-500 animate-pulse" : "bg-orange-500 animate-ping")} />
+      <div className="bg-purple-100 text-purple-800 text-xs sm:text-sm font-semibold py-2 px-4 sm:px-6 flex flex-col sm:flex-row gap-2 sm:justify-between items-center border-b border-purple-200 text-center">
+        <div className="flex items-center justify-center gap-2">
+          <span className={cn("w-2.5 h-2.5 rounded-full inline-block shrink-0", isPartnerConnected ? "bg-green-500 animate-pulse" : "bg-orange-500 animate-ping")} />
           <span>
             {isPartnerConnected
               ? `Connected with ${partnerUser?.username || "Friend"} 🟢`
@@ -724,14 +725,14 @@ export default function RoomPage() {
           </span>
         )}
       </div>
-
-      <main className="flex-1 max-w-7xl mx-auto w-full px-6 py-6 grid lg:grid-cols-12 gap-8 items-start">
-
+ 
+      <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+ 
         {/* LEFT COLUMN: Camera feed & Capture controls (Lg: col-span-7) */}
-        <section className="lg:col-span-7 flex flex-col gap-6 w-full">
-
+        <div className="contents lg:flex lg:flex-col lg:col-span-7 gap-6 w-full">
+ 
           {/* Camera Card */}
-          <Card className="shadow-lg overflow-hidden border-2 border-white/80 bg-white/90 backdrop-blur">
+          <Card className="order-1 w-full shadow-lg overflow-hidden border-2 border-white/80 bg-white/90 backdrop-blur">
             <CardContent className="p-4">
               <div className="flex justify-between items-center mb-3">
                 <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
@@ -833,10 +834,10 @@ export default function RoomPage() {
           </Card>
 
           {/* Capture Actions control center */}
-          <Card className="shadow-lg border-2 border-white/80 bg-white/90 backdrop-blur">
+          <Card className="order-2 w-full shadow-lg border-2 border-white/80 bg-white/90 backdrop-blur">
             <CardContent className="p-6">
               <h3 className="font-bold text-gray-900 mb-4 text-center">Capture Controls</h3>
-
+ 
               <div className="grid md:grid-cols-2 gap-4">
                 {/* Individual capture button */}
                 <div className="flex flex-col gap-2">
@@ -856,7 +857,7 @@ export default function RoomPage() {
                     Snap a photo for your next empty slot ({getNextEmptySlot() !== null ? `Slot ${getNextEmptySlot()! + 1}` : "all full"})
                   </p>
                 </div>
-
+ 
                 {/* Synced simultaneous capture button */}
                 <div className="flex flex-col gap-2">
                   <Button
@@ -872,7 +873,7 @@ export default function RoomPage() {
                   </p>
                 </div>
               </div>
-
+ 
               {/* Progress feedback alerts */}
               {isCountingDown && (
                 <Alert className="mt-4 bg-purple-50 border-purple-200">
@@ -884,16 +885,16 @@ export default function RoomPage() {
               )}
             </CardContent>
           </Card>
-
+ 
           {/* Styling customization controls (Shows up for both, synchronized) */}
-          <Card className="shadow-lg border-2 border-white/80 bg-white/90 backdrop-blur">
+          <Card className="order-4 w-full shadow-lg border-2 border-white/80 bg-white/90 backdrop-blur">
             <CardContent className="p-6">
               <h3 className="font-bold text-gray-900 mb-4">Shared Customizations</h3>
-
+ 
               {/* Frame selection */}
               <div className="mb-4">
                 <label className="text-sm font-semibold text-gray-700 mb-2 block">Frame Design</label>
-                <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
+                <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin">
                   {FRAMES.map((frame) => (
                     <Button
                       key={frame.id}
@@ -901,7 +902,7 @@ export default function RoomPage() {
                       size="sm"
                       onClick={() => handleStyleChange(frame.id)}
                       className={cn(
-                        "flex flex-col gap-1 p-2 h-auto text-xs truncate bg-white/50 border hover:bg-purple-50",
+                        "flex flex-col gap-1 p-2 h-auto text-xs shrink-0 w-20 truncate bg-white/50 border hover:bg-purple-50",
                         roomState?.style?.frameId === frame.id ? "ring-2 ring-purple-600 bg-purple-50" : ""
                       )}
                     >
@@ -911,7 +912,7 @@ export default function RoomPage() {
                   ))}
                 </div>
               </div>
-
+ 
               {/* Custom caption text input */}
               <div className="space-y-2">
                 <label className="text-sm font-semibold text-gray-700 block">Custom Caption</label>
@@ -926,19 +927,21 @@ export default function RoomPage() {
               </div>
             </CardContent>
           </Card>
-        </section>
+        </div>
 
         {/* RIGHT COLUMN: Shared 2x3 Photocard Display (Lg: col-span-5) */}
-        <section className="lg:col-span-5 flex flex-col gap-6 items-center w-full">
+        <div className="contents lg:flex lg:flex-col lg:col-span-5 gap-6 lg:items-center w-full">
 
-          {/* Header titles */}
-          <div className="text-center w-full mb-1">
-            <h2 className="text-2xl font-bold text-gray-900">Shared Photocard</h2>
-            <p className="text-sm text-gray-700">Photos taken instantly sync onto the card</p>
-          </div>
+          {/* Shared Photocard Section */}
+          <div className="order-3 w-full flex flex-col items-center gap-4 lg:order-none">
+            {/* Header titles */}
+            <div className="text-center w-full mb-1">
+              <h2 className="text-2xl font-bold text-gray-900">Shared Photocard</h2>
+              <p className="text-sm text-gray-700">Photos taken instantly sync onto the card</p>
+            </div>
 
-          {/* Photocard layout view */}
-          <div className="relative w-full max-w-[360px] aspect-[2/3] transition-all duration-300">
+            {/* Photocard layout view */}
+            <div className="relative w-full max-w-[360px] aspect-[2/3] transition-all duration-300">
             {/* Find current frame styling */}
             {(() => {
               const activeFrameId = roomState?.style?.frameId || "polaroid"
@@ -1076,9 +1079,10 @@ export default function RoomPage() {
               )
             })()}
           </div>
+          </div>
 
           {/* Action and download buttons */}
-          <div className="flex flex-col gap-2.5 w-full max-w-[360px]">
+          <div className="order-5 w-full max-w-[360px] flex flex-col gap-2.5 lg:order-none">
             {/* Download Button */}
             <Button
               onClick={downloadPhotocard}
@@ -1109,7 +1113,7 @@ export default function RoomPage() {
               Reset Photos & Card
             </Button>
           </div>
-        </section>
+        </div>
 
       </main>
 
